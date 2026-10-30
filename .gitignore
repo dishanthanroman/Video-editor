@@ -10,5 +10,6 @@
 .cxx
 *.apk
 *.aar
+*.zip
 __pycache__/
 *.pyc

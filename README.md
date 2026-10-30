@@ -47,21 +47,19 @@ AI-Auto-Shorts/
 
 1. **Install Dependencies:**
    ```bash
-   cd backend
-   pip install -r requirements.txt
+   pip install -r backend/requirements.txt
    ```
 2. **Start Server:**
    ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000
+   uvicorn backend.main:app --host 0.0.0.0 --port 8000
    ```
 
 ---
 
 ## 📲 How to Upload & Build APK from Mobile Browser
 
-1. Download `AI_Auto_Shorts_Project.zip` from this repository.
-2. Go to [GitHub.com](https://github.com) on your Android mobile browser and request **Desktop Site**.
-3. Click **New Repository** and name it `AI-Auto-Shorts`.
-4. Extract the ZIP on your phone or upload the files directly to GitHub.
-5. GitHub Actions will automatically start building the APK under the **Actions** tab!
-6. Once completed, download `AI-Auto-Shorts-Debug-APK.zip` under **Artifacts** and install `app-debug.apk` directly on your Android phone!
+1. Go to [GitHub.com](https://github.com) on your Android mobile browser and request **Desktop Site**.
+2. Click **New Repository** and name it `AI-Auto-Shorts`.
+3. Upload the repository files directly to GitHub.
+4. GitHub Actions will automatically start building the APK under the **Actions** tab!
+5. Once completed, download `AI-Auto-Shorts-Debug-APK.zip` or `AI-Auto-Shorts-Release-APK.zip` under **Artifacts** and install `app-debug.apk` or `app-release.apk` directly on your Android phone!
