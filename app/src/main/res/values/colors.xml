@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Palette -->
+    <color name="bg_dark">#121212</color>
+    <color name="bg_card">#1E1E2C</color>
+    <color name="bg_input">#2A2A3D</color>
+    <color name="primary">#7C4DFF</color> <!-- Neon Violet -->
+    <color name="primary_dark">#651FFF</color>
+    <color name="accent">#00E676</color> <!-- Neon Emerald Accent -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0C3</color>
+    <color name="text_hint">#767688</color>
+    <color name="border_color">#2F2F42</color>
+    <color name="error_color">#FF5252</color>
+    <color name="success_color">#00E676</color>
+</resources>
