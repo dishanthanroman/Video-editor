@@ -25,6 +25,7 @@ public class AnalysisActivity extends AppCompatActivity {
 
     private TextView tvStatusTitle;
     private TextView tvStatusDesc;
+    private String localFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,11 @@ public class AnalysisActivity extends AppCompatActivity {
         tvStatusTitle = findViewById(R.id.tv_status_title);
         tvStatusDesc = findViewById(R.id.tv_status_desc);
 
-        String filePath = getIntent().getStringExtra("FILE_PATH");
+        localFilePath = getIntent().getStringExtra("FILE_PATH");
         String videoUrl = getIntent().getStringExtra("VIDEO_URL");
 
-        if (filePath != null) {
-            uploadAndAnalyzeFile(new File(filePath));
+        if (localFilePath != null) {
+            uploadAndAnalyzeFile(new File(localFilePath));
         } else if (videoUrl != null) {
             analyzeUrl(videoUrl);
         } else {
@@ -90,6 +91,10 @@ public class AnalysisActivity extends AppCompatActivity {
                     AnalysisResult result = response.body();
                     Intent intent = new Intent(AnalysisActivity.this, EditorActivity.class);
                     intent.putExtra("ANALYSIS_RESULT", result);
+                    if (localFilePath != null) {
+                        intent.putExtra("VIDEO_PATH", localFilePath);
+                    }
+                    intent.putExtra("SERVER_VIDEO_PATH", videoSource);
                     startActivity(intent);
                     finish();
                 } else {

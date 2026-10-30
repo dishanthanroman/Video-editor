@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +29,7 @@ public class ExportActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button btnDownload;
     private VideoClip clip;
+    private String serverVideoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class ExportActivity extends AppCompatActivity {
         btnDownload = findViewById(R.id.btn_download_export);
 
         clip = (VideoClip) getIntent().getSerializableExtra("CLIP_DATA");
+        serverVideoPath = getIntent().getStringExtra("SERVER_VIDEO_PATH");
 
         startExportProcess();
 
@@ -55,13 +56,20 @@ public class ExportActivity extends AppCompatActivity {
             requestParams.put("clip_id", clip.getId());
             requestParams.put("start_time", clip.getStartTime());
             requestParams.put("end_time", clip.getEndTime());
+        } else {
+            requestParams.put("clip_id", "clip_default");
+            requestParams.put("start_time", 0.0);
+            requestParams.put("end_time", 30.0);
+        }
+        if (serverVideoPath != null) {
+            requestParams.put("video_path", serverVideoPath);
         }
 
         ApiClient.getService().generateClips(requestParams).enqueue(new Callback<Map<String, Object>>() {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String downloadClipId = clip != null && clip.getId() != null ? clip.getId() : "rendered_short";
+                    String downloadClipId = clip != null && clip.getId() != null ? clip.getId() : "clip_default";
                     downloadRenderedFile(downloadClipId);
                 } else {
                     tvStatus.setText("Export failed on server.");
